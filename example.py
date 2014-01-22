@@ -19,7 +19,7 @@ for road in roadPointWidthMap.keys():
   
   points = roadPointWidthMap[ road]['points']
   for point in range(len(points[0,:])):
-    sdfFile.addRoadPoint([points[0,point]*10, points[1,point]*10, points[2,point]], road)
+    sdfFile.addRoadPoint([points[0,point], points[1,point], points[2,point]], road)
    
-sdfFile.writeToFile('outFile.sdf')
+sdfFile.writeToFile('outFile2.sdf')
  

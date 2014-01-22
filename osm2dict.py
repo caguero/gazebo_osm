@@ -4,6 +4,7 @@ import numpy as np
 from dict2sdf import GetSDF
 
 class Osm2Dict:
+
   #Radius of the Earth in km
   def __init__(self):
     self.R = 6371
@@ -67,7 +68,7 @@ class Osm2Dict:
     distance = self.latLonDist( coords )
     angles = self.latLongBearing( coords)
    
-    point = np.array([ distance*np.cos(angles), distance*np.sin(angles), np.zeros(np.shape(distance))])
+    point = np.array([ distance*np.cos(angles)*1000, distance*np.sin(angles)*1000, np.zeros(np.shape(distance))*1000])
     return point
    
   def getRoadCoords(self):
@@ -98,10 +99,13 @@ class Osm2Dict:
 		
                 node_ref = data[i].get("data").get("nd")
                 coords = np.array([])
+
                 for j in range( len(data) ):
+                 
+
                   if "node" in data[j].get("type")  :
     
-                     if data[j].get("data").get("id") in node_ref: 
+                    if data[j].get("data").get("id") in node_ref: 
                       coords = np.append(coords, data[j].get("data").get("lon"))
                       coords = np.append( coords, data[j].get("data").get("lat"))          
                       coords = np.reshape(coords,(len(coords)/2, 2))
